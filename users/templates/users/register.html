@@ -1,0 +1,13 @@
+{%extends 'weather/base.html'%}
+{%load crispy_forms_tags%}
+{%block content%}
+<form method="POST">
+  <fieldset class = "form-group">
+    {%csrf_token%}
+    {{form|crispy}}
+  </fieldset>
+  <div class="form-group">
+    <button class="btn btn-outline-primary" type="submit">Submit</button>
+  </div>
+</form>
+{%endblock%}

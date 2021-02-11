@@ -1,0 +1,172 @@
+{%extends 'weather/base.html'%}
+{%block head%}
+
+{%endblock%}
+{%block content%}
+{%if not user.is_authenticated%}
+  <p> Login to see the weather in your location</p>
+{%else%}
+  {%if data%}
+  <div class="container pt-3">
+    <div class="row">
+      <div class="col align-self-start">
+        <h3>{{data.name}}, {{data.sys.country}}</h3>
+      </div>
+      
+    </div>
+  </div>
+  
+  <hr>
+  <div class="container">
+    <div class = "row">  
+      <div class="col align-self-center text-center">
+        <img src={{data.icon}} alt="" width="20%" height="20%">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col align-self-center text-center">
+        {{data.weather.0.description}}
+      </div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col" >
+        Temp:
+      </div>
+      <div class="col" id="temp">
+        real: {{data.main.temp}}
+      </div>
+      <div class="col" id="feels_like">
+        feal: {{data.main.feels_like}}
+      </div>
+      <div class="col">
+        <sup>o</sup>C
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Pressure:
+      </div>
+      <div class="col" id="pressure">
+        {{data.main.pressure}}
+      </div>
+      <div class="col">
+        
+      </div>
+      <div class="col">
+        hPa
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Humidity:
+      </div>
+      <div class="col" id="humidity">
+        {{data.main.humidity}}
+      </div>
+      <div class="col">
+        
+      </div>
+      <div class="col">
+        %
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" >
+        Visibility        
+      </div>
+      <div class="col" id="visibility">
+       {{data.visibility}}
+      </div>
+      <div class="col">
+        
+      </div>
+      <div class="col">
+        m
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        wind speed
+      </div>
+      <div class="col" id="wind_speed">
+        {{data.wind.speed}}
+      </div>
+      <div class="col">
+        
+      </div>
+      <div class="col">
+        m/s
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" >
+        wind direction
+      </div>
+      <div class="col" id="wind_deg">
+        {{data.wind.deg}}
+      </div>
+      <div class="col">
+        
+      </div>
+      <div class="col">
+        <sup>o</sup>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        clouds
+      </div>
+      <div class="col" id="clouds">
+        {{data.clouds.all}}
+      </div>
+      <div class="col">
+        
+      </div>
+      <div class="col">
+        %
+      </div>
+    </div>
+    {%if data.rain%}
+      <div class="row">
+        <div class="col">
+          rainfall
+        </div>
+        <div class="col" id="rain1">
+         1h:{{data.rain.1h}}
+        </div>
+        <div class="col" id="rain3">
+          {%if data.rain.3h%}
+          3h:{{data.rain.3h}}
+          {%endif%}
+        </div>
+        <div class="col">
+          mm
+        </div>
+      </div>
+      {%endif%}
+      {%if data.snow%}
+      <div class="row">
+        <div class="col">
+          snowfall
+        </div>
+        <div class="col" id="snow1">
+          {{data.snow.1h}}
+        </div>
+        <div class="col" is="snow3">
+          {%if data.rain.3h%}
+          {{data.snow.3h}}
+          {%endif%}
+        </div>
+        <div class="col">
+        </div>
+      </div>
+    {%endif%}
+  </div>
+  <hr>
+  {%else%}
+  <p>No default location is set</p>
+  {%endif%}
+{%endif%}
+{%endblock%}

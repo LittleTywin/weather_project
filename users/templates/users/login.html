@@ -1,0 +1,18 @@
+{%extends 'weather/base.html'%}
+
+{%block content%}
+{%load crispy_forms_tags%}
+<div class="container container-fluid">
+  <form method="post" action="{%url 'users:login'%}">
+  {%csrf_token%}
+  {{form|crispy}}
+  <div class="pt-2">
+    <input class="btn btn-primary" type="submit" value="Log In">
+  </div>
+  <input type="hidden" name="next" value="{{request.GET.next}}">
+  </form>
+  <div>
+    <p class="text-muted">Dont have an account? <a href="{%url 'users:register'%}?next={{request.GET.next}}">Register</a> </p>
+  </div>
+</div>
+{%endblock%}

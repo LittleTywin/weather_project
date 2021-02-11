@@ -1,0 +1,31 @@
+{%extends 'weather/base.html'%}
+{%block head%}
+{%load static%}
+<!-- Mapbox -->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+<script src="{%static 'weather/javascript/profile.js'%}"></script>
+
+{{ locations|json_script:"locations" }}
+{{ default_location|json_script:"default_location" }}
+
+{%endblock%}
+{%block content%}
+{%csrf_token%}
+
+<div id="location-list" class="container container-fluid">
+  My locations
+  <ul>
+
+  </ul>
+</div>
+<div id="location-details">
+</div>
+
+<div id='map' style='width: 400px; height: 300px;'></div>
+
+
+<hr>
+<button class="btn btn-outline-primary" id="add_location">Add location</button>
+{%endblock%}
+
