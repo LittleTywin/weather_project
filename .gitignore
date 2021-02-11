@@ -2,6 +2,4 @@
 *.json
 *sqlite*
 .gcloudignore
-requirements*
-app.yaml
 static/
