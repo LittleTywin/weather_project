@@ -78,3 +78,6 @@ def set_default(request, station_id):
     request.user.profile.default_location = location
     request.user.save()
     return redirect(reverse('weather:profile'))
+
+def url_not_found(request):
+    return redirect(reverse('weather:home'))

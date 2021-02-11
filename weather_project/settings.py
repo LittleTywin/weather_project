@@ -59,7 +59,6 @@ else:
     DEBUG = config['DEBUG']
     ALLOWED_HOSTS = config['ALLOWED_HOSTS_LOCAL']
     if WITH_SQL_PROXY: ##runing app locally with remote sql db
-        print('with')
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.mysql',
