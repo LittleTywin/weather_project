@@ -59,6 +59,7 @@ else:
     DEBUG = config['DEBUG']
     ALLOWED_HOSTS = config['ALLOWED_HOSTS_LOCAL']
     if WITH_SQL_PROXY: ##runing app locally with remote sql db
+        print('with')
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.mysql',
@@ -130,12 +131,6 @@ WSGI_APPLICATION = 'weather_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation

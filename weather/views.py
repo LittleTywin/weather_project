@@ -17,8 +17,6 @@ def home(request):
             data = response_data.json()
             icon = data['weather'][0]['icon']
             data['icon'] = f'https://openweathermap.org/img/wn/{icon}@2x.png'
-            print(data)
-
     return render(request, 'weather/home.html', {'data':data})
 
 
