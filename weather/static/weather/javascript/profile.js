@@ -115,7 +115,7 @@ $(function() {
             $(this).attr('class','btn btn-outline-primary');
         }else{
             $(this).attr('class','btn btn-outline-danger');
-            navigator.geolocation.getCurrentPosition(get_possition_success,get_possition_failure); 
+            //navigator.geolocation.getCurrentPosition(get_possition_success,get_possition_failure); 
         }
         add_location_state ^= true;
     });

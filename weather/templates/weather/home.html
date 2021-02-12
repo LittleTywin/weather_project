@@ -154,14 +154,15 @@
           snowfall
         </div>
         <div class="col" id="snow1">
-          {{data.snow.1h}}
+          1h: {{data.snow.1h}}
         </div>
         <div class="col" is="snow3">
           {%if data.rain.3h%}
-          {{data.snow.3h}}
+          3h: {{data.snow.3h}}
           {%endif%}
         </div>
         <div class="col">
+          mm
         </div>
       </div>
     {%endif%}
