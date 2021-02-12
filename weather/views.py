@@ -6,6 +6,9 @@ import json
 from .weather_api import WeatherApi
 from .models import Location
 import flag
+from . import wind
+
+
 
 
 def home(request):
@@ -22,6 +25,7 @@ def home(request):
             data['weather'][0]['icon'] = f'https://openweathermap.org/img/wn/{icon}@2x.png'
             data['sys']['emoji'] = flag.flag(data['sys']['country'])
             data['visibility'] /=1000
+            data['wind']['dir'] = wind.degrees_to_direction(data['wind']['deg'])
     return render(request, 'weather/home.html', {'data':data})
 
 
@@ -69,7 +73,7 @@ def new_location(request, station_id):
         longitude = new_location.get('coord').get('lon')
     )
     location.save()
-    return redirect(reverse('weather:home'))
+    return redirect(reverse('weather:profile'))
 
 @login_required
 def delete_location(request, station_id):
@@ -81,8 +85,9 @@ def delete_location(request, station_id):
 def set_default(request, station_id):
     location = get_object_or_404(Location, station_id=station_id, user = request.user)
     request.user.profile.default_location = location
+    print(location)
     request.user.save()
-    return redirect(reverse('weather:profile'))
+    return redirect(reverse('weather:home'))
 
 def url_not_found(request):
     return redirect(reverse('weather:home'))
