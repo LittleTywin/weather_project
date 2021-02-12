@@ -5,6 +5,7 @@ from  django.conf import settings
 import json
 from .weather_api import WeatherApi
 from .models import Location
+import flag
 
 
 def home(request):
@@ -16,7 +17,11 @@ def home(request):
             response_data = weather_api.current(id=default_location.station_id)
             data = response_data.json()
             icon = data['weather'][0]['icon']
-            data['icon'] = f'https://openweathermap.org/img/wn/{icon}@2x.png'
+            data['main']['temp'] = round(data['main']['temp']-273.15)
+            data['main']['feels_like'] = round(data['main']['feels_like']-273.15)
+            data['weather'][0]['icon'] = f'https://openweathermap.org/img/wn/{icon}@2x.png'
+            data['sys']['emoji'] = flag.flag(data['sys']['country'])
+            data['visibility'] /=1000
     return render(request, 'weather/home.html', {'data':data})
 
 
